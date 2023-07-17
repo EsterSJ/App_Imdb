@@ -1,11 +1,20 @@
 .contenedor_home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.contenedor_formulario{
     height: 88vh;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 24px
+    gap: 24px;
 }
 
 .formulario{
@@ -55,7 +64,14 @@
     }
 
     .style_button:hover{
-        /* transform:  rotate(360deg); */
         transform: scale(1.15);
-        /* transition:  transform 2s; */
     }
+
+.vista_cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+}
