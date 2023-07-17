@@ -3,6 +3,8 @@ import { Profesional } from 'src/app/models/profesional';
 import { ProfesionalesService } from 'src/app/shared/profesionales.service';
 import { Router } from '@angular/router';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,6 +21,13 @@ export class HomeComponent{
   public mostrar (name: string, last_name: string){
       this.profesionalesService.getProfesionales(name, last_name).subscribe((data: Profesional[]) => {
         this.profesionales = data;
+        if (data.length == 0){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se encontró el profesional',
+          })
+        }
       }); 
   }
 
@@ -27,6 +36,13 @@ export class HomeComponent{
     
     this.profesionalesService.postProfesionales(profesional).subscribe((data: Profesional[]) => {
       this.profesionales = data;
+      Swal.fire({
+        title: name + " " +last_name,
+        text: 'Profesional añadido',
+        imageUrl: photo,
+        imageWidth: 100,
+        imageHeight: 200,
+      })
     }); 
   }
 
@@ -44,6 +60,11 @@ export class HomeComponent{
       
       this.profesionalesService.putProfesionales(profesional).subscribe((data: Profesional[]) => {
         this.profesionales = data;
+        Swal.fire(
+          name + " " + last_name,
+          'Datos modificados',
+          'success'
+        )
       }); 
   }
 
@@ -51,6 +72,11 @@ export class HomeComponent{
 
     this.profesionalesService.deleteProfesionales(name, last_name).subscribe((data: Profesional[]) => {
       this.profesionales = data;
+      Swal.fire(
+        name + " " + last_name,
+        'Profesional borrado',
+        'success'
+      )
     }); 
 }
 }

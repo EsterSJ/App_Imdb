@@ -21,9 +21,6 @@
     </div>
 </div>
 <div class="vista_cards">
-    <div *ngIf="profesionales.length == 0">
-        <h1 style="color: red; font-weight: bold;">Profesional no encontrado</h1> 
-    </div>
     <div *ngFor="let profesional of profesionales;">
         <app-card [profesional] = "profesional"></app-card>
     </div>
